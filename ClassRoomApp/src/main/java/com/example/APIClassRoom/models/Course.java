@@ -3,6 +3,8 @@ package com.example.APIClassRoom.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "courses")
 public class Course {
@@ -12,12 +14,19 @@ public class Course {
     @Column(name = "id_course")
     private Integer id;
     private String name;
-
     @ManyToOne
     @JoinColumn(name="fk_teacher", referencedColumnName = "id_teacher")
-    @JsonBackReference
+    @JsonBackReference(value = "teacher-course")
     Teacher teacher;
-
+    @OneToMany(mappedBy = "course")
+    @JsonBackReference(value = "course-attendance")
+    private List<Attendance> attendances;
+    @OneToMany(mappedBy = "course")
+    @JsonBackReference(value = "course-subject")
+    private List<Subject> subjects;
+    @OneToMany(mappedBy = "course")
+    @JsonBackReference(value = "course-inscription")
+    private List<Inscription> inscriptions;
     public Course() {
     }
 

@@ -12,21 +12,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Integer id;
-
     @Column(nullable = false, length = 100)
     private String name;
-
     @Column(name = "email", unique = true)
     private String email;
     private String password;
     private String phone;
     @Enumerated(EnumType.STRING)
     private UserType userType;
-
     @OneToOne(mappedBy = "user")
     @JsonBackReference(value = "teacher-user")
     private Teacher teacher;
-
     @OneToOne(mappedBy = "user")
     @JsonBackReference(value = "student-user")
     private Student student;

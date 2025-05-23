@@ -1,7 +1,10 @@
 package com.example.APIClassRoom.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -11,20 +14,25 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_student")
     private Integer id;
-
     @OneToOne
     @JoinColumn(name = "fk_user", referencedColumnName = "id_user", nullable = false)
     @JsonManagedReference(value = "student-user")
     private User user;
-
     @Column(name = "grade", nullable = false)
     private Integer grade;
-
     @Column(name = "born_date", nullable = false)
     private String bornDate;
-
     @Column(name = "direction", nullable = false, length = 255)
     private String direction;
+    @OneToMany(mappedBy = "student")
+    @JsonBackReference(value = "student-attendance")
+    private List<Attendance> attendances;
+    @OneToMany(mappedBy = "student")
+    @JsonBackReference(value = "student-grade")
+    private List<Grade> grades;
+    @OneToMany(mappedBy = "student")
+    @JsonBackReference(value = "student-inscription")
+    private List<Inscription> inscriptions;
 
     public Student(){}
 

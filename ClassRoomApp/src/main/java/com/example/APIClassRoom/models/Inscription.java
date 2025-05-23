@@ -1,6 +1,7 @@
 package com.example.APIClassRoom.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,15 +12,14 @@ public class Inscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_inscription")
     private Integer id;
-
     @ManyToOne
-    @JoinColumn(name = "id_student", referencedColumnName = "id_student", nullable = false)
+    @JoinColumn(name = "fk_student", referencedColumnName = "id_student", nullable = false)
+    @JsonManagedReference(value = "student-inscription")
     private Student student;
-
     @ManyToOne
-    @JoinColumn(name = "id_course", referencedColumnName = "id_course", nullable = false)
+    @JoinColumn(name = "fk_course", referencedColumnName = "id_course", nullable = false)
+    @JsonManagedReference(value = "course-inscription")
     private Course course;
-
     @Column(name = "inscription_date", nullable = false)
     private String inscriptionDate;
 

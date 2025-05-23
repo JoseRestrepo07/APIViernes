@@ -1,0 +1,76 @@
+/user
+{
+    "name":"Jose Daniel Restrepo Rivera",
+    "email":"restreporiverajosedaniel@gmail.com",
+    "password":"admin123*",
+    "phone":"3122701289",
+    "typeUser":"teacher"
+}
+
+/teachers
+{
+    "speciality":"Ingeniero",
+    "user":{
+        "id":1
+    }
+}
+
+/student
+{
+"user": {
+"id":1
+},
+"grade":"6",
+"bornDate":"17 febrero 2009",
+"direction":"calle47b",
+}
+
+/attendances
+{
+"student":{
+"id":1
+},
+"course":{
+"id":1
+}
+"date":"2025-10-20",
+"status":"PRESENT"
+}
+
+/course
+{
+"name":"6b",
+"teacher":{
+"id":1
+}
+}
+
+/inscriptions
+{
+"student":{
+"id":1
+},
+"course":{
+"id":1
+},
+"inscriptionDate":"25 mayo 2010"
+}
+
+/subjects
+{
+"name":"matematicas",
+"course":{
+"id":1
+}
+}
+
+/grade {
+"student":{
+"id":1
+}
+"subject":{
+"id":1
+},
+"score":"3.5",
+"evaluationDate":"2025-10-02"
+}

@@ -1,6 +1,7 @@
 package com.example.APIClassRoom.models;
 
 import com.example.APIClassRoom.helpers.AttendanceStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,18 +14,16 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_attendance")
     private Integer id;
-
     @ManyToOne
-    @JoinColumn(name = "id_student", nullable = false)
+    @JoinColumn(name = "fk_student", referencedColumnName = "id_student", nullable = false)
+    @JsonManagedReference(value = "student-attendance")
     private Student student;
-
     @ManyToOne
-    @JoinColumn(name = "id_course", nullable = false)
+    @JoinColumn(name = "fk_course", referencedColumnName = "id_course", nullable = false)
+    @JsonManagedReference(value = "course-attendance")
     private Course course;
-
     @Column(nullable = false)
     private LocalDate date;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AttendanceStatus status;
